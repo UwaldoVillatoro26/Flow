@@ -5,12 +5,13 @@ const UserService = require('../services/activate-user');
 function userApi(app) {
     const router = express.Router();
     app.use("/api/activate-user", router);
-
-    const userService = new UserService();
     console.log();
+    const userService = new UserService();
+    
 
     router.put("/", async function (req, res, next) {
         const { body: user } = req;
+        console.log();
         try {
             const usr = await userService.getUser(user.id);
             if (usr) {
@@ -27,6 +28,7 @@ function userApi(app) {
             }
         } catch (err) {
             next(err);
+            console.log();
         }
     });
 
